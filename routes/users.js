@@ -16,7 +16,7 @@ router.use(bodyParser.urlencoded({ extended : false}));
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  response.render('user_home' , {
+  res.render('user_home' , {
         pageTitle : 'Home',
         pageID : 'user_home'
 
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/get_all' , function (request , response) {
+router.get('/get_all' , function (req , res) {
 
     var resultArray = [];
     mongodb.connect(url , function (err ,db) {
@@ -37,7 +37,7 @@ router.get('/get_all' , function (request , response) {
 
             }, function () { // callback function once we get all the data
                 db.close();
-                response.json(resultArray);
+                res.json(resultArray);
             });
         }
 
@@ -46,13 +46,10 @@ router.get('/get_all' , function (request , response) {
 });
 
 
-router.post('/insert' ,function (request, response) {
+router.post('/insert' ,function (req, res) {
 
 
-    console.log(request.body);
-    var num = createid();
-
-
+    console.log(req.body);
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()
@@ -63,7 +60,7 @@ router.post('/insert' ,function (request, response) {
     console.log("Date created : " , date_created);
 
     // if link doesnt start with http append http in front of it
-    var link = request.body.url_name;
+    var link = req.body.url_name;
     var title = "";
     var summary = "";
     request(url, function(error, response, html) {
@@ -113,15 +110,15 @@ router.post('/insert' ,function (request, response) {
         }
     });
 
-    response.redirect('/');
+    res.redirect('/');
 });
 
 
 
-router.get('/:input_id' , function (request,  response) {
+router.get('/:input_id' , function (req,  res) {
     console.log("some");
     //var input_id = 2747;
-    var input_id = request.params.input_id;
+    var input_id = req.params.input_id;
     console.log(input_id);
 
     var link = '';
@@ -144,7 +141,7 @@ router.get('/:input_id' , function (request,  response) {
                     console.log("link :   "  +  link);
 
 
-                    response.redirect(link);
+                    res.redirect(link);
 
                 }
             });
