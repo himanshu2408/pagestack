@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include partials/template/head.ejs %>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <!-- NAV-BAR -->
+    <% include partials/template/nav.ejs %>
+    <!-- NAV-BAR END -->
+
+    <!--HEADER -->
+    <% include partials/template/header.ejs %>
+    <!--HEADER END -->
+
+    <!-- FOOTER -->
+    <% include partials/template/footer.ejs %>
+    <!-- FOOTER END -->
+
+    <% include partials/template/jsdefaults.ejs %>
   </body>
 </html>
