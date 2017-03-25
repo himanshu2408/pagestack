@@ -6,6 +6,15 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcryptjs":"*",
+    "connect-flash":"*",
+    "express-messages":"*",
+    "express-session":"*",
+    "express-validator":"*",
+    "mongoose":"*",
+    "passport":"*",
+    "passport-http":"*",
+    "passport-local":"*",
     "body-parser": "~1.16.0",
     "cheerio": "^0.22.0",
     "cookie-parser": "~1.4.3",

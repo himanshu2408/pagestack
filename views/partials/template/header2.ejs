@@ -8,8 +8,14 @@
             </ul>
             <h1 id="fh5co-logo"><a href="index.html" style="color: black;">PageStack<span>.</span></a></h1>
             <ul class="pull-right right-menu">
-                <li><a href="#login"> style="color: black;"Login</a></li>
-                <li class="fh5co-cta-btn"><a href="#" style="color: black;">Sign up</a></li>
+                
+                <% if(user) { %>
+                <li><a href="/logout" style="color: black;">Logout</a></li>
+                <% } else { %>
+                <li><a href="/login" style="color: black;">Login</a></li>
+                <li class="fh5co-cta-btn"><a href="/register" style="color: black;">Sign up</a></li>
+                <% } %>
+
             </ul>
         </nav>
     </div>
