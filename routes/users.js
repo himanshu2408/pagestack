@@ -29,7 +29,7 @@ router.get('/get_all' , function (req , res) {
     var resultArray = [];
     mongodb.connect(url , function (err ,db) {
         if(err == null){
-            var cursor = db.collection('user-data').find();
+            var cursor = db.collection('user_data').find();
             cursor.forEach(function (doc, err) {
                 if(err == null){
                     resultArray.unshift(doc);
@@ -46,29 +46,58 @@ router.get('/get_all' , function (req , res) {
 });
 
 
+
 router.post('/insert' ,function (req, res) {
 
 
-    console.log(req.body);
+    console.log("body " , req.body);
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()
+    var mm = today.getMonth();
     var yyyy = today.getFullYear();
 
     var month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ;
     var date_created =  month_names[mm] +  " " + String(dd) + ", " + String(yyyy) ;
     console.log("Date created : " , date_created);
 
-    // if link doesnt start with http append http in front of it
     var link = req.body.url_name;
     var title = "";
     var summary = "";
-    request(url, function(error, response, html) {
+    var item = {} ;
+
+    request(link, function(error, response, html) {
             if (!error) {
-                var $ = cheerio.load(html);
-                var title = $('title').text();
-                var summmary =  $('p').text();
+                var $ = cheerio.load(html , {decodeEntities: true});
+                title = $('title').text();
+                summary = $('p').text();
+                summary = summary.substring(0,500);
                 console.log(title);
+
+
+
+                var item = {
+                    url : link,
+                    created : date_created,
+                    title : title,
+                    summary : summary
+                };
+
+
+                mongodb.connect(url,function (err , db) {
+                    if(err){
+                        return console.dir(err);
+                    }else {
+                        db.collection('user_data').insertOne(item, function (err, result) {
+                            assert.equal(null, err);
+                            console.log("ID for the item" + item['_id']);
+                            console.log("URL" + String(item['url']));
+                            console.log("Item Inserted")
+                            db.close();
+                            res.json(item);
+                        });
+                    }
+                });
+
             }
             else{
                 console.log(error);
@@ -77,40 +106,6 @@ router.post('/insert' ,function (req, res) {
         }
     );
 
-
-
-
-
-    var item = {
-        url : link,
-        created : date_created,
-        title : title,
-        summary : summary,
-        clicks : 0
-    };
-
-
-
-
-    console.log("ID for the item" + String(item['_id']));
-    console.log("URl" + String(item['url']));
-
-
-    mongodb.connect(url,function (err , db) {
-        if(err){
-            return console.dir(err);
-        }else {
-            db.collection('user-data').insertOne(item, function (err, result) {
-                assert.equal(null, err);
-                console.log("ID for the item" + item['_id']);
-                console.log("URL" + String(item['url']));
-                console.log("Item Inserted")
-                db.close();
-            });
-        }
-    });
-
-    res.redirect('/');
 });
 
 
@@ -128,7 +123,7 @@ router.get('/:input_id' , function (req,  res) {
         }
         else{
             console.log("Inside Connect");
-            db.collection('user-data').findOne({'_id': String(input_id) } , function (err, doc) {
+            db.collection('user_data').findOne({'_id': String(input_id) } , function (err, doc) {
                 if(err){
                     return console.dir(err);
                 }
