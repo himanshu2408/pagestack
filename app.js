@@ -19,6 +19,7 @@ var users = require('./routes/users');
 var home = require('./routes/home');
 var login = require('./routes/login');
 var register = require('./routes/register');
+var api = require('./routes/api');
 
 
 var app = express();
@@ -79,6 +80,7 @@ app.use(function (req, res, next) {
 
 
 app.use('/', index);
+app.use('/api', api);
 app.use('/users', users);
 app.use('/home', home);
 app.use('/login', login);
@@ -108,8 +110,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
 var server = app.listen(app.get('port') , function () {
     console.log('Listening on port ' + app.get('port'))
 })
+
 
 module.exports = app;
