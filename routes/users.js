@@ -8,7 +8,7 @@ var router = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var assert = require('assert');
 
-var url = 'mongodb://localhost:27017/test'
+var url = 'mongodb://localhost:27017/test';
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended : false}));
 
