@@ -5,7 +5,12 @@ var User = require('../models/user')
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
-    res.render('register', { errors: null });
+    if(req.user){
+        res.redirect('/home');
+    }
+    else {
+        res.render('register', {errors: null});
+    }
 });
 
 
