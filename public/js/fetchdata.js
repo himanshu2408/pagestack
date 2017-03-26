@@ -1,20 +1,38 @@
 $(function() {
     $.getJSON('api/get_all_user', updateTable);
 
-    function updateTable(data) {
-    var output = '';
-        $.each(data,function(key, item) {
-            output += '<div class="col-md-4 col-sm-6 col-xxs-12">';
-            output += '<a href="'+item.url+'" class="fh5co-project-item image-popup">';
-            output += '<img src="images/img_1.jpg" alt="Image" class="img-responsive">';
-            output += '<div class="fh5co-text">';
-            output += '<h2>'+item.title+'</h2>';
-            output += '<p>'+item.summary+'</p>';
-            output += '</div>';
-            output += '</a>';
-            output += '</div>';
+});
+function updateTable(data) {
+    var output= '';
+    $.each(data,function(key, item) {
+        output += '<div class="col-md-4 col-sm-6 col-xxs-12">';
+        output += '<div class="fh5co-project-item">';
+        output += '<img src="http://placehold.it/360x125/EEE" class="">';
+        output += '<div class="fh5co-text" style="text-align:center">';
+        output += '<h2>'+item.title+'</h2>';
+        output += '<p>'+item.summary+'</p><div class="pull-right" style="cursor:pointer;"><i class="glyphicon glyphicon-remove" id="'+item._id+'"></i></div>';
+        output += '</div>';
+        output += '</div>';
+        output += '</div>';
+
+    });
+    $('.mycards').html(output);
+}
+
+$('.cardslist').on('click', function (e) {
+    if (e.target.className == 'glyphicon glyphicon-remove') {
+        console.log(e.target.id);
+        $.ajax({
+            url: 'api/' + e.target.id,
+            type: 'DELETE',
+            success: window.location.href='/home'
 
         });
-        $('.mycards').html(output);
+
     }
 });
+
+function myfunc() {
+    console.log("inside myfunc");
+    $.getJSON('api/get_all_user', updateTable);
+}

@@ -10,7 +10,7 @@ var router = express.Router();
 
 var mongodb = require('mongodb').MongoClient;
 var assert = require('assert');
-var ObjectId = mongodb.ObjectID;
+var ObjectId = require('mongodb').ObjectID;
 
 var url = 'mongodb://localhost:27017/test';
 router.use(bodyParser.json());
@@ -78,7 +78,18 @@ router.get('/get_all_user' , ensureAuthenticated , function (req , res) {
 
 });
 
+router.delete('/:id', ensureAuthenticated, function (req, res) {
+    mongodb.connect(url , function (err ,db) {
+        if(err == null){
 
+            db.collection('user_data', function(err, collection) {
+                collection.deleteOne({_id: new ObjectId(req.params.id)});
+                console.log("card successfully deleted");
+            });
+        }
+
+    });
+});
 
 router.post('/insert' ,function (req, res) {
 
