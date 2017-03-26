@@ -80,7 +80,7 @@ router.get('/get_all_user' , ensureAuthenticated , function (req , res) {
 
 
 
-router.post('/insert' ,function (req, res) {
+router.post('/insert' , ensureAuthenticated , function (req, res) {
 
 
     console.log("body " , req.body);
