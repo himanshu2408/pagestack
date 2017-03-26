@@ -91,7 +91,7 @@ router.delete('/:id', ensureAuthenticated, function (req, res) {
     });
 });
 
-router.post('/insert' ,function (req, res) {
+router.post('/insert' , ensureAuthenticated , function (req, res) {
 
 
     console.log("body " , req.body);
