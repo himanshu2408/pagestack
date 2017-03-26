@@ -32,6 +32,23 @@ function ensureAuthenticated(req, res, next) {
         res.redirect('/login');
     }
 }
+
+
+function checkAuthenticated(req, res, next) {
+    //console.log(req);
+    //console.log(req.user.username);
+    console.log(req.user);
+
+
+    // console.log(user.username);
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else {
+            resultArray = { "status" : "false" };
+            return res.json(resultArray);
+         }
+}
 /*
 router.get('/get_all' , ensureAuthenticated , function (req , res) {
 
@@ -77,6 +94,16 @@ router.get('/get_all_user' , ensureAuthenticated , function (req , res) {
     });
 
 });
+
+
+router.get('/isauthenticated' , checkAuthenticated , function (req,res) {
+    resultArray = { "status" : "true" ,
+        "email" : req.user.email
+    };
+
+    return res.json(resultArray);
+});
+
 
 router.delete('/:id', ensureAuthenticated, function (req, res) {
     mongodb.connect(url , function (err ,db) {
