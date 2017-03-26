@@ -6,8 +6,12 @@ var User = require('../models/user');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-
-    res.render('login');
+    if(req.user){
+        res.redirect('/home')
+    }
+    else {
+        res.render('login');
+    }
 });
 
 
