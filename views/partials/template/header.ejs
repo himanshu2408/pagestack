@@ -1,3 +1,4 @@
+<!--
 <div class="fh5co-loader"></div>
 
 <div id="fh5co-page">
@@ -17,7 +18,7 @@
     </div>
 </section>
 <!-- #fh5co-header -->
-
+<!--
 <section id="fh5co-hero" class="js-fullheight" style="background-image: url(images/hero_bg.jpg);" data-next="yes">
     <div class="fh5co-overlay"></div>
     <div class="container">
@@ -29,7 +30,7 @@
                     Example:
                     <div class="fh5co-right-position">
                 -->
-                <div class="fh5co-left-position">
+              <!--  <div class="fh5co-left-position">
                     <h2 class="animate-box">Create Awesome Things for Better Web</h2>
                     <p class="animate-box"><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-outline popup-vimeo btn-video"><i class="icon-play2"></i> Watch video</a> <a href="http://freehtml5.co" target="_blank" class="btn btn-primary">Visit FREEHTML5.co</a></p>
                 </div>
@@ -45,5 +46,51 @@
             <span class="arrow"><i class="icon-chevron-down"></i></span>
         </a>
     </div>
-</section>
+</section> -->
 <!-- END #fh5co-hero -->
+
+
+    <div id="tf-home">
+        <div class="overlay">
+            <div id="sticky-anchor"></div>
+            <nav id="tf-menu" class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand logo" href="/">PageStack</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/home">Home</a></li>
+                            <% if(user) { %>
+                            <li><a href="/logout">Logout</a></li>
+                            <% } else { %>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                            <% } %>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <div class="container">
+                <div class="content">
+                    <h1>I create webistes</h1>
+                    <h3>that communicates, connects and engages customers</h3>
+                    <br>
+                    <a href="#tf-contact" class="btn btn-primary my-btn">Contact</a>
+                    <a href="#tf-portfolio" class="btn btn-primary my-btn2">Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>

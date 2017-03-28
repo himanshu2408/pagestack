@@ -83,6 +83,39 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-
+        <div class="container">
+            <div class="content col-md-5">
+                <h1>I create websites</h1>
+                <h3>that communicates, connects and engages customers</h3>
+                <br>
+                <a href="#tf-contact" class="btn btn-primary my-btn">Contact</a>
+                <a href="#tf-portfolio" class="btn btn-primary my-btn2">Portfolio</a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class=" col-md-5">
+                <div class="row visible-md visible-lg"><br><br><br><br></div>
+                    <h2 class="page-header">Account Login</h2>
+                    <% if (success_msg.length>0) { %>
+                    <div class="alert alert-success"><%= success_msg %></div>
+                    <% } %>
+                    <% if (error_msg.length>0) { %>
+                    <div class="alert alert-danger"><%= error_msg  %></div>
+                    <% } %>
+                    <% if (error.length>0) { %>
+                    <div class="alert alert-danger"><%= error  %></div>
+                    <% } %>
+                    <form method="post" action="/login">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+            </div>
+        </div>
     </div>
 </div>
