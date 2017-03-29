@@ -27,27 +27,51 @@ router.post('/', function(req, res, next) {
     req.checkBody('password2', 'Passwords do not match.').equals(req.body.password);
 
     var errors = req.validationErrors();
+    console.log("error " , errors);
 
-    if(errors){
-        res.render('register',{
-            errors: errors
-        });
-    }
-    else{
-        var newUser = new User({
-            name: name,
-            email:email,
-            username: username,
-            password: password
-        });
-        User.createUser(newUser, function (err, user) {
-            if(err) throw err;
-            console.log(user);
-        });
+    User.getUserByEmail(email , function (err1, user1) {
+        if (err1) throw err1;
+        if (user1) {
+            jsonStr = '[ { "param" : "email" , "msg" : "Email already Exists" , "value" : "' + email + '" } ]';
+            var obj = JSON.parse(jsonStr);
+            console.log(obj);
+            console.log("err");
+            res.render('register',{
+                errors: obj
+            });
+        }
+        else{
+            if(errors){
+                console.log("err0");
+                res.render('register',{
+                    errors: errors
+                });
+            }
+            else {
 
-        req.flash('success_msg', 'You are successfully registered, you can now login.');
-        res.redirect('/login');
-    }
+                console.log("INside-register");
+                var newUser = new User({
+                    name: name,
+                    email: email,
+                    username: username,
+                    password: password
+                });
+                User.createUser(newUser, function (err, user) {
+                    if (err) throw err;
+                    console.log(user);
+                });
+
+                req.flash('success_msg', 'You are successfully registered, you can now login.');
+                res.redirect('/login');
+            }
+        }
+
+
+
+    });
+
+
+
 });
 
 

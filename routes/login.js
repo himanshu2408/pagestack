@@ -15,9 +15,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.getUserByUsername(username, function (err, user) {
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+},
+    function(email, password, done) {
+        User.getUserByEmail(email, function (err, user) {
             if(err) throw err;
             if(!user){
                 return done(null, false, {message: 'Unknown User'});
@@ -45,7 +48,6 @@ passport.deserializeUser(function(id, done) {
         done(err, user);
     });
 });
-
 
 router.post('/', passport.authenticate('local', {successRedirect: '/home', failureRedirect: '/login', failureFlash: true}) ,
     function(req, res, next) {
