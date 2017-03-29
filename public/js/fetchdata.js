@@ -7,7 +7,7 @@ function updateTable(data) {
     $.each(data,function(key, item) {
         output += '<div class="col-md-4 col-sm-6 col-xxs-12">';
         output += '<div class="thumbnail">';
-        output += '<img src="http://placehold.it/360x125/EEE" class="">';
+        output += '<img src="'+  item.img_loc  + '">';
         output += '<div class="caption" style="text-align:center">';
         output += '<h2>'+item.title+'</h2>';
         output += '<p>'+item.summary+'</p><div class="pull-right" style="cursor:pointer;"><i class="glyphicon glyphicon-remove" id="'+item._id+'"></i></div>';

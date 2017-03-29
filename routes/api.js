@@ -132,26 +132,26 @@ router.post('/insert' , ensureAuthenticated , function (req, res) {
     console.log("Date created : " , date_created);
 
     var link = req.body.url_name;
-    var title = "";
+    var title = req.body.title;
     var summary = "";
     var item = {} ;
+    var rand = Math.floor((Math.random() * 7) + 1);
+    var img_loc = "/img/" + rand + ".jpg";
 
     request(link, function(error, response, html) {
             if (!error) {
                 var $ = cheerio.load(html , {decodeEntities: true});
-                title = $('title').text();
                 summary = $('p').text();
-                summary = summary.substring(0,500);
+                summary = summary.substring(0,2000);
                 console.log(title);
-
-
 
                 var item = {
                     url : link,
                     created : date_created,
                     title : title,
                     summary : summary,
-                    email : req.user.email
+                    email : req.user.email,
+                    img_loc : img_loc
 
                 };
 
