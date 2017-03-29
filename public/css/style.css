@@ -269,3 +269,7 @@ nav#tf-footer {
 	padding: 3% 0 2% 0;
 	color: #f1f1f1;
 }
+.card-text{
+	margin:5px;
+	word-wrap: break-word;
+}
