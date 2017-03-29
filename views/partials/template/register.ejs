@@ -63,7 +63,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo" href="/">Pagestack</a>
+                    <a class="navbar-brand logo" href="/">PageStack</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,6 +83,40 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-
+        <div class="container">
+            <div class="content col-md-5">
+                <h1>I create websites</h1>
+                <h3>that communicates, connects and engages customers</h3>
+                <br>
+                <a href="#tf-contact" class="btn btn-primary my-btn">Contact</a>
+                <a href="#tf-portfolio" class="btn btn-primary my-btn2">Portfolio</a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                        <h2 class="page-header">Register</h2>
+                        <% if(errors) { %>
+                        <div class="alert alert-danger"><%= errors[0].msg %></div>
+                        <%}%>
+                        <form method="post" action="/register">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Password" name="password2" required>
+                            </div>
+                            <button type="submit" class="btn btn-default">Register</button>
+                        </form>
+            </div>
+        </div>
     </div>
 </div>
