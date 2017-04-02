@@ -95,6 +95,39 @@ router.get('/get_all_user' , ensureAuthenticated , function (req , res) {
 
 });
 
+router.get('/get_article_by_id/:id' , ensureAuthenticated , function (req , res) {
+
+    var id = req.params.id;
+    console.log(id);
+    try {
+        var obj_id = require('mongodb').ObjectID(id);
+        var resultArray = [];
+        mongodb.connect(url , function (err ,db) {
+            if(err == null){
+                //  var o_id = new mongodb.ObjectID(req.user._id);
+                db.collection('user_data').findOne({"_id" : obj_id } , function (err1, doc) {
+
+                    if(err1== null){
+                        delete doc["email"];
+                        doc["status"] = "success";
+                        res.json(doc);
+                    }
+
+                });
+            }
+
+        });
+
+    }
+    catch (err){
+        var r_str = { status: "error" };
+        res.json(r_str);
+
+    }
+});
+
+
+
 
 router.get('/isauthenticated' , checkAuthenticated , function (req,res) {
     resultArray = { "status" : "true" ,
