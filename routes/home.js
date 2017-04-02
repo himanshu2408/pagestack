@@ -9,6 +9,14 @@ router.get('/', ensureAuthenticated , function(req, res, next) {
     });
 });
 
+router.get('/:articleId', ensureAuthenticated , function(req, res, next) {
+    res.render('article',{
+        pageTitle: 'Article Page',
+        pageID: 'article',
+        articleId: req.params.articleId
+    });
+});
+
 function ensureAuthenticated(req, res, next) {
 
     if(req.isAuthenticated()){
