@@ -107,10 +107,20 @@ router.get('/get_article_by_id/:id' , ensureAuthenticated , function (req , res)
                 //  var o_id = new mongodb.ObjectID(req.user._id);
                 db.collection('user_data').findOne({"_id" : obj_id } , function (err1, doc) {
 
-                    if(err1== null){
-                        delete doc["email"];
-                        doc["status"] = "success";
-                        res.json(doc);
+                    if(err1==null){
+                        if(doc){
+                            delete doc["email"];
+                            doc["status"] = "success";
+                            res.json(doc);
+                        }
+                        else{
+                            var r_str = { status: "not found" };
+                            res.json(r_str);
+                        }
+                    }
+                    else{
+                        var r_str = { status: "error" };
+                        res.json(r_str);
                     }
 
                 });
