@@ -69,12 +69,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/home">Home</a></li>
                         <% if(user) { %>
+                        <li><a href="/home">Home</a></li>
                         <li><a href="/logout">Logout</a></li>
                         <% } else { %>
                         <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
                         <% } %>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
@@ -85,14 +84,13 @@
 
         <div class="container">
             <div class="content col-md-5">
-                <h1>I create websites</h1>
-                <h3>that communicates, connects and engages customers</h3>
+                <h1>I Store WebPages</h1>
+                <h3>Found something you want to view later? PageStack lets you store it on cloud.</h3>
                 <br>
-                <a href="#tf-contact" class="btn btn-primary my-btn">Contact</a>
-                <a href="#tf-portfolio" class="btn btn-primary my-btn2">Portfolio</a>
+                <a href="/login" class="btn btn-primary my-btn2">Login NOW</a>
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-5">
+            <div class="col-md-5"><br>
                         <h2 class="page-header">Register</h2>
                         <% if(errors) { %>
                         <div class="alert alert-danger"><%= errors[0].msg %></div>
@@ -114,7 +112,7 @@
                                 <label>Confirm Password</label>
                                 <input type="password" class="form-control" placeholder="Password" name="password2" required>
                             </div>
-                            <button type="submit" class="btn btn-default">Register</button>
+                            <button type="submit" class="btn btn-primary my-btn">Register</button>
                         </form>
             </div>
         </div>

@@ -120,6 +120,7 @@ a:focus{
 
 .logo {
 	font-family: 'Playball', cursive;
+	font-size: 250%;
 }
 
 #tf-service{
@@ -266,10 +267,13 @@ form#contact {
 }
 nav#tf-footer {
 	background: #222222;
-	padding: 3% 0 2% 0;
+	padding: 5% 0 4% 0;
 	color: #f1f1f1;
 }
 .card-text{
 	margin:5px;
 	word-wrap: break-word;
+}
+.developer{
+	border-bottom: 1px dotted #2F937B;
 }
