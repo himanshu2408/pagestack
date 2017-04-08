@@ -277,3 +277,6 @@ nav#tf-footer {
 .developer{
 	border-bottom: 1px dotted #2F937B;
 }
+.center{
+	text-align: center;
+}

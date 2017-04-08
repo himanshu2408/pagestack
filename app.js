@@ -20,7 +20,7 @@ var home = require('./routes/home');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var api = require('./routes/api');
-
+var how = require('./routes/how');
 
 var app = express();
 app.set('port' , process.env.PORT || 80);
@@ -85,6 +85,7 @@ app.use('/users', users);
 app.use('/home', home);
 app.use('/login', login);
 app.use('/register', register);
+app.use('/how', how);
 
 app.get('/logout', function (req, res) {
     req.logout();
