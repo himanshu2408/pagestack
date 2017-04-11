@@ -184,7 +184,7 @@ router.post('/insert' , ensureAuthenticated , function (req, res) {
     request(link, function(error, response, html) {
             if (!error) {
                 var $ = cheerio.load(html , {decodeEntities: true});
-                summary = $('p').text();
+                summary = $('body').html();
                 summary = summary.substring(0,2000);
                 console.log(title);
 
