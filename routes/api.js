@@ -1,6 +1,3 @@
-/**
- * Created by Nishant Mor on 3/25/2017.
- */
 var express =  require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -18,12 +15,6 @@ router.use(bodyParser.urlencoded({ extended : false}));
 
 
 function ensureAuthenticated(req, res, next) {
-    //console.log(req);
-    //console.log(req.user.username);
-    console.log(req.user);
-
-
-   // console.log(user.username);
     if(req.isAuthenticated()){
         return next();
     }
@@ -35,12 +26,6 @@ function ensureAuthenticated(req, res, next) {
 
 
 function checkAuthenticated(req, res, next) {
-    //console.log(req);
-    //console.log(req.user.username);
-    console.log(req.user);
-
-
-    // console.log(user.username);
     if(req.isAuthenticated()){
         return next();
     }
@@ -104,7 +89,6 @@ router.get('/get_article_by_id/:id' , ensureAuthenticated , function (req , res)
         var resultArray = [];
         mongodb.connect(url , function (err ,db) {
             if(err == null){
-                //  var o_id = new mongodb.ObjectID(req.user._id);
                 db.collection('user_data').findOne({"_id" : obj_id } , function (err1, doc) {
 
                     if(err1==null){
